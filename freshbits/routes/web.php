@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\logincontroller;
+use App\Http\Controllers\productcontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::view('register', 'register');
+Route::post('register', [logincontroller::class, 'register']);
+Route::view('login', 'login');
+Route::post('login', [logincontroller::class, 'login']);
+Route::get('logout', [logincontroller::class, 'logout']);
+Route::view('forgotpass', 'forgotpassword.forgotpassword');
+Route::post('forgotpass', [logincontroller::class, 'forgotpass']);
+
+Route::middleware(['checkauth'])->group(function () {
+    //
+    Route::resource('product', productcontroller::class);
+    Route::delete('myproductsDeleteAll', [productcontroller::class, 'deleteAll']);
 });
