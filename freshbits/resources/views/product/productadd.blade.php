@@ -1,16 +1,6 @@
 @extends('layout')
 @section('content')
 
-<style>
-    .error {
-        color: red;
-    }
-
-    .form-control.error {
-        border-color: red;
-    }
-</style>
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
